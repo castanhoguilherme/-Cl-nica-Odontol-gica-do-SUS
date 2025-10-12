@@ -20,7 +20,7 @@ export const LoginView = ({ onLogin }: { onLogin: (user: string, pass: string) =
         container: {
             display: 'flex',
             flexDirection: 'column',
-            gap: '20px',
+            gap: '15px',
             textAlign: 'center',
             backgroundColor: '#FFFFFF',
             padding: isSmallScreen ? '30px' : '40px 50px',
@@ -62,6 +62,12 @@ export const LoginView = ({ onLogin }: { onLogin: (user: string, pass: string) =
         error: {
             color: '#E07A5F',
             minHeight: '20px',
+            margin: 0,
+        },
+        hint: {
+            color: '#8D99AE',
+            fontSize: '0.85em',
+            marginTop: '5px'
         }
     };
 
@@ -88,6 +94,9 @@ export const LoginView = ({ onLogin }: { onLogin: (user: string, pass: string) =
                 {error && <p style={styles.error}>{error}</p>}
                 <button type="submit" style={styles.button}>Entrar</button>
             </form>
+            <p style={styles.hint}>
+                Dica: Use 'administrador' e 'admin' para acesso administrativo.
+            </p>
         </div>
     );
 };

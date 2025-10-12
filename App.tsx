@@ -51,14 +51,11 @@ export const App = () => {
     
     const handleNavigate = (view: AppView) => setCurrentView(view);
 
+    // FIX: Removed unreachable 'patient' and 'display' cases for the admin user.
+    // These views are rendered as standalone pages before MainLayout, so including them here
+    // was redundant and likely causing a subtle type inference issue.
     const renderAdminContent = () => {
         switch (currentView) {
-            case 'patient':
-                return <PatientView 
-                            patients={appState.patients} 
-                            onGenerateTicket={appState.handleGenerateTicket} 
-                            onGeneratePriorityTicket={appState.handleGeneratePriorityTicket} 
-                        />;
             case 'attendant':
                 return <AttendantView 
                             queue={appState.queue} 
@@ -67,13 +64,6 @@ export const App = () => {
                             desks={appState.desks} 
                             currentlyServing={appState.currentlyServing} 
                         />;
-            case 'display':
-                 return <DisplayPanelView 
-                        currentCall={appState.currentCall} 
-                        history={appState.callHistory} 
-                        onLogout={handleLogout} 
-                        userProfile={currentUser!.profile} 
-                    />;
             case 'admin':
                 return <AdminView 
                             desks={appState.desks} 
